@@ -102,3 +102,108 @@ $u = Auth::user();
                     <?php if (!$activeRentals): ?>
                         <tr><td colspan="6" class="text-center text-muted py-4"><i class="bi bi-emoji-smile me-1"></i> No hay alquileres activos en este momento.</td></tr>
                     <?php else: foreach ($activeRentals as $r):
+                        $mins = max(1, (int)ceil((time() - strtotime($r['fecha_inicio'])) / 60));
+                        $cost = $mins * (float)$r['tarifa_por_minuto'];
+                    ?>
+                        <tr>
+                            <td>
+                                <div class="fw-semibold"><?= e($r['usuario']) ?></div>
+                                <small class="text-muted"><?= e($r['estacion_origen']) ?></small>
+                            </td>
+                            <td>
+                                <div class="fw-semibold"><?= e($r['codigo_qr']) ?></div>
+                                <small class="text-muted"><?= e($r['modelo']) ?></small>
+                            </td>
+                            <td><?= format_date($r['fecha_inicio'], 'd/m H:i') ?></td>
+                            <td><span class="chip"><i class="bi bi-clock"></i> <?= format_minutes($mins) ?></span></td>
+                            <td class="fw-semibold"><?= format_money($cost) ?></td>
+                            <td class="text-end"><a class="btn btn-sm btn-outline-brand" href="<?= url('alquileres/ver/' . $r['id_alquiler']) ?>">Ver</a></td>
+                        </tr>
+                    <?php endforeach; endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card mb-3">
+            <div class="card-header"><h2>Alertas de batería</h2><span class="badge text-bg-warning badge-soft"><?= count($lowBattery) ?></span></div>
+            <div class="card-body">
+                <?php if (!$lowBattery): ?>
+                    <p class="text-muted small mb-0"><i class="bi bi-check-circle text-success me-1"></i> Todas las bicicletas disponibles tienen buena carga.</p>
+                <?php else: foreach ($lowBattery as $b): ?>
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-semibold small"><?= e($b['codigo_qr']) ?></span>
+                                <span class="small text-muted"><?= (float)$b['nivel_bateria'] ?>%</span>
+                            </div>
+                            <div class="battery-bar <?= (float)$b['nivel_bateria'] < 15 ? 'low' : 'medium' ?> mt-1">
+                                <span style="width: <?= max(3, (float)$b['nivel_bateria']) ?>%"></span>
+                            </div>
+                            <small class="text-muted"><?= e($b['estacion'] ?? 'Sin estación') ?></small>
+                        </div>
+                        <a class="btn btn-sm btn-soft" href="<?= url('bicicletas/editar/' . $b['id_bicicleta']) ?>"><i class="bi bi-pencil"></i></a>
+                    </div>
+                <?php endforeach; endif; ?>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><h2>Mantenimiento próximo</h2></div>
+            <div class="card-body">
+                <?php if (!$upcomingMaintenance): ?>
+                    <p class="text-muted small mb-0">Sin mantenimientos programados en los próximos 15 días.</p>
+                <?php else: foreach ($upcomingMaintenance as $b): ?>
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                        <div>
+                            <div class="fw-semibold small"><?= e($b['codigo_qr']) ?></div>
+                            <small class="text-muted"><?= e($b['modelo']) ?></small>
+                        </div>
+                        <span class="chip"><i class="bi bi-calendar-event"></i> <?= format_date($b['prox_manten_date'], 'd/m/Y') ?></span>
+                    </div>
+                <?php endforeach; endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-1">
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header"><h2>Disponibilidad por estación</h2><a href="<?= url('mapa') ?>" class="btn btn-sm btn-soft">Mapa</a></div>
+            <div class="card-body"><div class="chart-box" style="height:260px"><canvas id="chartEstaciones"></canvas></div></div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card h-100">
+            <div class="card-header"><h2>Consumo energético (7 días)</h2><a href="<?= url('energia') ?>" class="btn btn-sm btn-soft">Detalle</a></div>
+            <div class="card-body"><div class="chart-box" style="height:260px"><canvas id="chartEnergia"></canvas></div></div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-3">
+    <div class="card-header"><h2>Últimos alquileres</h2><a href="<?= url('alquileres') ?>" class="btn btn-sm btn-soft">Historial</a></div>
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead><tr><th>#</th><th>Cliente</th><th>Bicicleta</th><th>Inicio</th><th>Duración</th><th>Costo</th><th>Estado</th></tr></thead>
+            <tbody>
+            <?php foreach ($recentRentals as $r): ?>
+                <tr>
+                    <td class="text-muted">#<?= (int)$r['id_alquiler'] ?></td>
+                    <td><?= e($r['usuario']) ?></td>
+                    <td><?= e($r['codigo_qr']) ?></td>
+                    <td><?= format_date($r['fecha_inicio'], 'd/m/Y H:i') ?></td>
+                    <td><?= format_minutes($r['duracion_minutos'] ? (int)$r['duracion_minutos'] : null) ?></td>
+                    <td><?= $r['costo_total'] !== null ? format_money($r['costo_total']) : '—' ?></td>
+                    <td><?= badge_estado($r['estado']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>window.CHART_DATA = <?= json_encode($chartData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
