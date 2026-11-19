@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="E-Bike Jardín">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b6e4f"/>
+      <stop offset="1" stop-color="#16a34a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+  <g fill="none" stroke="#f0fff4" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="18.5" cy="42" r="9"/>
+    <circle cx="45.5" cy="42" r="9"/>
+    <path d="M18.5 42l7.5-14h12l7.5 14"/>
+    <path d="M26 28h12"/>
+    <path d="M34 28l-4.5 14"/>
+    <path d="M29.5 20h7"/>
+  </g>
+  <path d="M43 13c4.2-2.9 9.2-2 11.4 2.2-4.1 2.9-9.1 2-11.4-2.2z" fill="#a7e75c"/>
+  <path d="M43 13c1.6 1.8 2.9 4.1 4.3 6.4" fill="none" stroke="#0b6e4f" stroke-width="1.2" stroke-linecap="round"/>
+</svg>
