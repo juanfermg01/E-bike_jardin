@@ -1,0 +1,482 @@
+[
+  {
+    "id": 1,
+    "nombre": "EDS Texaco Vegas",
+    "direccion": "Carrera 48 # 30 Sur - 48",
+    "latitud": 6.178759,
+    "longitud": -75.588344,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 2,
+    "nombre": "LOS ALAMOS",
+    "direccion": "Carrera 52 # 65-07",
+    "latitud": 6.26311,
+    "longitud": -75.566933,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 3,
+    "nombre": "Exposiciones",
+    "direccion": "calle 36 # 53 - 67",
+    "latitud": 6.238276,
+    "longitud": -75.575384,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 4,
+    "nombre": "EDS Santa María - Sabaneta",
+    "direccion": "Carrera 48 # 72 sur - 2",
+    "latitud": 6.154191,
+    "longitud": -75.616863,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 5,
+    "nombre": "Nuestro Urabá",
+    "direccion": "Carrera 99 84 -18 Km 1, Vía Carepa",
+    "latitud": 7.881344,
+    "longitud": -76.631882,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 6,
+    "nombre": "CC Puerta del Norte",
+    "direccion": "Diagonal 55 # 34-67",
+    "latitud": 6.339373,
+    "longitud": -75.542016,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Sin servicio por cambio de equipos"
+  },
+  {
+    "id": 7,
+    "nombre": "La Fe",
+    "direccion": "Vía las Palmas, km 28",
+    "latitud": 6.19495,
+    "longitud": -75.547495,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 8,
+    "nombre": "Viva Palmas",
+    "direccion": "Calle 36 D Sur # 27 A - 105",
+    "latitud": 6.163369,
+    "longitud": -75.572954,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 9,
+    "nombre": "La Pintada",
+    "direccion": "Calle 28 # 30 B - 24",
+    "latitud": null,
+    "longitud": null,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Sin servicio por cambio de equipos"
+  },
+  {
+    "id": 10,
+    "nombre": "CC Los Molinos",
+    "direccion": "Calle 30A # 82A – 26",
+    "latitud": 6.233169,
+    "longitud": -75.60418,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 11,
+    "nombre": "MAMM Ciudad del Rio",
+    "direccion": "Carrera 44 # 19A-100",
+    "latitud": 6.223542,
+    "longitud": -75.573754,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 12,
+    "nombre": "Parques del Rio",
+    "direccion": "Calle 38 Carrera 63 A",
+    "latitud": 10.409613,
+    "longitud": -75.485977,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Sin servicio por estabilización"
+  },
+  {
+    "id": 13,
+    "nombre": "CC La Florida",
+    "direccion": "Calle 71 # 65 - 150",
+    "latitud": 6.270859,
+    "longitud": -75.576964,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Sin servicio por cambio de equipos"
+  },
+  {
+    "id": 14,
+    "nombre": "Plaza Mayor",
+    "direccion": "Carrera 57 # 41-81",
+    "latitud": 6.243444,
+    "longitud": -75.575795,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Sin servicio por cambio de equipos"
+  },
+  {
+    "id": 15,
+    "nombre": "CC Unicentro",
+    "direccion": "Carrera 66 B # 34 A - 76",
+    "latitud": 6.241085,
+    "longitud": -75.586995,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 16,
+    "nombre": "1er Parque Laureles",
+    "direccion": "Circular 5 # 73 - 15",
+    "latitud": 6.246441,
+    "longitud": -75.592868,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 17,
+    "nombre": "Sao Paulo",
+    "direccion": "Carrera 43 A Calle 18 SUR - 135",
+    "latitud": 4.570868,
+    "longitud": -74.297333,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 18,
+    "nombre": "CC Santa Fé",
+    "direccion": "Carrera 43 A # 7 Sur - 170",
+    "latitud": 6.1999,
+    "longitud": -75.572815,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 19,
+    "nombre": "CC El Tesoro",
+    "direccion": "Carrera 25 A # 1 A Sur – 45",
+    "latitud": 6.197546,
+    "longitud": -75.559329,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 20,
+    "nombre": "Tesoro 2",
+    "direccion": "Carrera 25 A # 1 A Sur – 45",
+    "latitud": 6.197546,
+    "longitud": -75.559329,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 21,
+    "nombre": "Milla de Oro",
+    "direccion": "Carrer 43 A # 3 Sur -130",
+    "latitud": 6.204318,
+    "longitud": -75.582519,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 22,
+    "nombre": "Éxito Poblado",
+    "direccion": "Calle 10 # 43E-135",
+    "latitud": 6.211483,
+    "longitud": -75.57508,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 23,
+    "nombre": "Oviedo",
+    "direccion": "Carrera 43 A CL 6 Sur - 15",
+    "latitud": 6.181085,
+    "longitud": -75.582719,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 24,
+    "nombre": "CC Mayorca",
+    "direccion": "Calle. 51 Sur #48-57 PISO 3",
+    "latitud": 6.161817,
+    "longitud": -75.605515,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Sin servicio por cambio de equipos"
+  },
+  {
+    "id": 25,
+    "nombre": "Mall Plaza",
+    "direccion": "Carrera 14, Av. Kevin Ángel No 55D – 251",
+    "latitud": 5.066299,
+    "longitud": -75.491989,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 26,
+    "nombre": "CDA Caldas",
+    "direccion": "Avenida Kevin Ángel, Calle 64 Esquina, Manizales",
+    "latitud": 5.063055,
+    "longitud": -75.485621,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 27,
+    "nombre": "Tambo la Manuela",
+    "direccion": "via autopista del cafe, Manizales, Caldas",
+    "latitud": 5.050101,
+    "longitud": -75.566059,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Fallo del conector CCS1 los demas disponibles"
+  },
+  {
+    "id": 28,
+    "nombre": "Acapulco",
+    "direccion": "Via pacífico 3 entre los municipios La Virginia - Viterbo",
+    "latitud": 5.03939,
+    "longitud": -75.88825,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 29,
+    "nombre": "C.C. Fundadores",
+    "direccion": "Avenida del Centro #55-05",
+    "latitud": null,
+    "longitud": null,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 30,
+    "nombre": "Tambo El Jardín",
+    "direccion": "Vía Armenia, Filandia, Quindío",
+    "latitud": 4.698085,
+    "longitud": -75.606055,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Funcional, (tipo 2 AC en falla)"
+  },
+  {
+    "id": 31,
+    "nombre": "Centro Comercial Plaza Flora",
+    "direccion": "Cra. 6 #3-180",
+    "latitud": 4.540943,
+    "longitud": -75.66001,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Funcional"
+  },
+  {
+    "id": 32,
+    "nombre": "Tres Esquinas la 50",
+    "direccion": "Cra. 18 #50-5",
+    "latitud": 4.518847,
+    "longitud": -75.689313,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Funcional"
+  },
+  {
+    "id": 33,
+    "nombre": "Senior Mall",
+    "direccion": "La Tebaida - El Caimo #km1, Armenia, El Eden",
+    "latitud": 4.46174,
+    "longitud": -75.766529,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Inicio operación 01-05-2026"
+  },
+  {
+    "id": 34,
+    "nombre": "Parque del Café",
+    "direccion": "Km 6 la Tebaida- Montenegro",
+    "latitud": 4.540279,
+    "longitud": -75.770648,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Funcional"
+  },
+  {
+    "id": 35,
+    "nombre": "Centro de Convenciones",
+    "direccion": "Cra. 6 #3-180",
+    "latitud": 4.570868,
+    "longitud": -74.297333,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Inicio Operación 01-07-2026"
+  },
+  {
+    "id": 36,
+    "nombre": "Ciudad sobre letras",
+    "direccion": "Cl. 42 #221",
+    "latitud": 4.570868,
+    "longitud": -74.297333,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Inicio operación 01-06-2026"
+  },
+  {
+    "id": 37,
+    "nombre": "Portal del Quindio",
+    "direccion": "Cra. 14 #19N-46",
+    "latitud": 4.558431,
+    "longitud": -75.654997,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Funcional"
+  },
+  {
+    "id": 38,
+    "nombre": "Unicentro Armenia",
+    "direccion": "Cra. 14 #6-02",
+    "latitud": 4.540262,
+    "longitud": -75.66567,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Funcional"
+  },
+  {
+    "id": 39,
+    "nombre": "Cra 21_HOMECENTER",
+    "direccion": "Calle 45 # 20 - 13, Bucaramanga",
+    "latitud": 7.115765,
+    "longitud": -73.120492,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Operativa"
+  },
+  {
+    "id": 40,
+    "nombre": "Centro Comercial Cacique",
+    "direccion": "Transversal 93 No. 34 - 99, Bucaramanga",
+    "latitud": 7.070538,
+    "longitud": -73.105538,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Operativa"
+  },
+  {
+    "id": 41,
+    "nombre": "CC LA Florida",
+    "direccion": "Calle 31 26a-19, Barrio Cañaveral, Floridablanca, Torre 1 nivel 4",
+    "latitud": 7.070538,
+    "longitud": -73.105538,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Operativa"
+  },
+  {
+    "id": 42,
+    "nombre": "CC El Puente",
+    "direccion": "Calle 12 Carrera 12 - 123, San Gil, Santander. Centro Comercial El Puente",
+    "latitud": 6.551671,
+    "longitud": -73.134089,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Operativa"
+  },
+  {
+    "id": 43,
+    "nombre": "CC San Silvestre",
+    "direccion": "Carrera 19 Av 58A, Barrio Galan, Barrancabermeja, Sotano 1",
+    "latitud": 7.067184,
+    "longitud": -73.857915,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Operativa"
+  },
+  {
+    "id": 44,
+    "nombre": "EDS El Retorno",
+    "direccion": "Kilómetro 1, vía al mar, salida San Alberto, EDS El Retorno",
+    "latitud": 8.255619,
+    "longitud": -73.359556,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Operativa"
+  },
+  {
+    "id": 45,
+    "nombre": "Fundador",
+    "direccion": "Calle 7 No. 29-183 Av. Francisco Fernández de Contreras.",
+    "latitud": 8.255619,
+    "longitud": -73.359556,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 46,
+    "nombre": "Ventura Plaza",
+    "direccion": "Diagonal Santander, Calle 10 y 11, CC Ventura Plaza, Caobos.",
+    "latitud": 7.888538,
+    "longitud": -72.496608,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 47,
+    "nombre": "Unicentro",
+    "direccion": "Avenida 1 No. 20N - 45 (Sótano), Urb. Prados Norte.",
+    "latitud": 7.91684,
+    "longitud": -72.493557,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  },
+  {
+    "id": 48,
+    "nombre": "Cariongo",
+    "direccion": "Carrera 5 Calle 9 esquina, Barrio El Centro.",
+    "latitud": 7.888538,
+    "longitud": -72.496608,
+    "tipo_conector": null,
+    "potencia_kw": null,
+    "estado": "Disponible"
+  }
+]
