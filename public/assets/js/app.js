@@ -62,3 +62,68 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (result.isConfirmed) {
                     form.dataset.confirmed = '1';
                     form.submit();
+                }
+            });
+        });
+    });
+
+    // ---- Mostrar / ocultar contraseña ----
+    document.querySelectorAll('[data-toggle-password]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const input = document.querySelector(button.dataset.togglePassword);
+            if (!input) return;
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            button.innerHTML = isPassword ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+        });
+    });
+
+    // ---- Cronómetro de alquiler activo ----
+    document.querySelectorAll('[data-timer-start]').forEach(function (box) {
+        const start = new Date(box.dataset.timerStart.replace(' ', 'T')).getTime();
+        const rate = parseFloat(box.dataset.timerRate || '0');
+        const elapsedEl = box.querySelector('[data-timer-elapsed]');
+        const costEl = box.querySelector('[data-timer-cost]');
+
+        function tick() {
+            const diff = Math.max(0, Date.now() - start);
+            const totalMinutes = Math.floor(diff / 60000);
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            const seconds = Math.floor(diff / 1000) % 60;
+            const estimatedMinutes = Math.max(1, Math.ceil(diff / 60000));
+
+            if (elapsedEl) {
+                elapsedEl.textContent = String(hours).padStart(2, '0') + ':' +
+                    String(minutes).padStart(2, '0') + ':' +
+                    String(seconds).padStart(2, '0');
+            }
+            if (costEl) {
+                costEl.textContent = '$ ' + (estimatedMinutes * rate).toLocaleString('es-CO') + ' COP';
+            }
+        }
+        tick();
+        setInterval(tick, 1000);
+    });
+
+    // ---- Tooltips ----
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+        new bootstrap.Tooltip(el);
+    });
+
+    // ---- Copiar código QR ----
+    document.querySelectorAll('[data-copy]').forEach(function (button) {
+        button.addEventListener('click', function () {
+            navigator.clipboard.writeText(button.dataset.copy).then(function () {
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Código copiado',
+                    showConfirmButton: false,
+                    timer: 1800
+                });
+            });
+        });
+    });
+});
