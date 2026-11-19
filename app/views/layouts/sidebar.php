@@ -43,3 +43,49 @@ if ($u) {
             <?php if ($nivel <= 2): ?>
                 <a class="nav-link-item <?= is_active('mantenimientos') ?>" href="<?= url('mantenimientos') ?>">
                     <i class="bi bi-tools"></i><span>Mantenimientos</span>
+                </a>
+                <a class="nav-link-item <?= is_active('energia') ?>" href="<?= url('energia') ?>">
+                    <i class="bi bi-battery-charging"></i><span>Energía</span>
+                </a>
+            <?php endif; ?>
+        </nav>
+
+        <div class="nav-section">Administración</div>
+        <nav class="sidebar-nav">
+            <?php if ($nivel <= 2): ?>
+                <a class="nav-link-item <?= is_active('pagos') ?>" href="<?= url('pagos') ?>">
+                    <i class="bi bi-credit-card"></i><span>Pagos</span>
+                </a>
+                <a class="nav-link-item <?= is_active('reportes') ?>" href="<?= url('reportes') ?>">
+                    <i class="bi bi-bar-chart-line"></i><span>Reportes</span>
+                </a>
+            <?php else: ?>
+                <a class="nav-link-item <?= is_active('pagos') ?>" href="<?= url('pagos') ?>">
+                    <i class="bi bi-credit-card"></i><span>Métodos de pago</span>
+                </a>
+            <?php endif; ?>
+            <?php if ($nivel === 1): ?>
+                <a class="nav-link-item <?= is_active('usuarios') ?>" href="<?= url('usuarios') ?>">
+                    <i class="bi bi-people"></i><span>Usuarios</span>
+                </a>
+            <?php endif; ?>
+        </nav>
+    </div>
+
+    <div class="sidebar-user">
+        <a href="<?= url('perfil') ?>" class="d-flex align-items-center gap-2 text-decoration-none flex-grow-1">
+            <span class="avatar avatar-sm"><?= e($iniciales ?: 'EB') ?></span>
+            <span class="user-meta">
+                <strong><?= e($u['nombre'] ?? 'Usuario') ?></strong>
+                <small><?= e($u['nombre_rol'] ?? '') ?></small>
+            </span>
+        </a>
+        <form method="post" action="<?= url('logout') ?>" data-confirm="Cerrar sesión" data-text="¿Seguro que quieres salir de E-Bike Jardín?" data-icon="question">
+            <?= csrf_field() ?>
+            <button class="btn btn-sm btn-logout" type="submit" title="Cerrar sesión">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
