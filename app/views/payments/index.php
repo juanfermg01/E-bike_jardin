@@ -124,3 +124,129 @@ $iconos = [
                         <div class="stat-mini flex-grow-1"><strong><?= (int)$stats['reembolsos'] ?></strong><span>Reembolsados</span></div>
                         <div class="stat-mini flex-grow-1"><strong><?= format_money($stats['monto']) ?></strong><span>Recaudado</span></div>
                     </div>
+                    <div class="note-box small mt-3 mb-0"><i class="bi bi-shield-check me-1"></i> Solo los administradores pueden ejecutar reembolsos.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<div class="card table-card">
+    <div class="card-header">
+        <form method="get" action="<?= url('pagos') ?>" class="filter-bar">
+            <?php if ($isStaff): ?>
+                <div class="input-group" style="min-width:240px">
+                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    <input type="search" name="q" class="form-control" placeholder="Cliente, bici o referencia" value="<?= e($filters['q']) ?>">
+                </div>
+            <?php endif; ?>
+            <select name="estado" class="form-select">
+                <option value="">Todos los estados</option>
+                <?php foreach (['aprobado' => 'Aprobado', 'pendiente' => 'Pendiente', 'rechazado' => 'Rechazado', 'reembolsado' => 'Reembolsado'] as $key => $label): ?>
+                    <option value="<?= $key ?>" <?= $filters['estado'] === $key ? 'selected' : '' ?>><?= $label ?></option>
+                <?php endforeach; ?>
+            </select>
+            <button class="btn btn-soft" type="submit"><i class="bi bi-funnel me-1"></i> Filtrar</button>
+            <?php if ($filters['q'] || $filters['estado']): ?>
+                <a class="btn btn-link text-muted" href="<?= url('pagos') ?>">Limpiar</a>
+            <?php endif; ?>
+        </form>
+        <span class="text-muted small"><?= (int)$pagination['total'] ?> pagos</span>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Referencia</th>
+                    <?php if ($isStaff): ?><th>Cliente</th><?php endif; ?>
+                    <th>Bicicleta</th>
+                    <th>Método</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                    <?php if ($isAdmin): ?><th class="text-end">Acciones</th><?php endif; ?>
+                </tr>
+            </thead>
+            <tbody>
+            <?php if (!$transactions): ?>
+                <tr><td colspan="<?= $isAdmin ? 8 : ($isStaff ? 7 : 6) ?>"><div class="empty-state"><i class="bi bi-credit-card"></i><h3>Sin pagos registrados</h3><p class="small mb-0">Los cobros aparecen al finalizar cada alquiler.</p></div></td></tr>
+            <?php else: foreach ($transactions as $t): ?>
+                <tr>
+                    <td><?= format_date($t['fecha_proceso'], 'd/m/Y H:i') ?></td>
+                    <td class="small"><?= e($t['referencia_ext'] ?: '—') ?></td>
+                    <?php if ($isStaff): ?>
+                        <td><?= e($t['cliente']) ?></td>
+                    <?php endif; ?>
+                    <td><?= e($t['codigo_qr']) ?></td>
+                    <td>
+                        <div class="small"><?= e($etiquetas[$t['tipo'] ?? ''] ?? 'Pago simulado') ?></div>
+                        <?php if (!empty($t['ultimos_digitos'])): ?><small class="text-muted">•••• <?= e($t['ultimos_digitos']) ?></small><?php endif; ?>
+                    </td>
+                    <td><strong><?= format_money($t['monto']) ?></strong></td>
+                    <td><?= badge_estado($t['estado_pago']) ?></td>
+                    <?php if ($isAdmin): ?>
+                        <td>
+                            <div class="actions justify-content-end">
+                                <?php if ($t['estado_pago'] === 'aprobado'): ?>
+                                    <form method="post" action="<?= url('pagos/reembolsar/' . $t['id_transaccion']) ?>"
+                                          data-confirm="Reembolsar pago" data-text="Se marcará como reembolsado el pago de <?= format_money($t['monto']) ?>.">
+                                        <?= csrf_field() ?>
+                                        <button class="btn btn-sm btn-outline-danger" type="submit" title="Reembolsar"><i class="bi bi-arrow-counterclockwise"></i></button>
+                                    </form>
+                                <?php else: ?>
+                                    <a class="btn btn-sm btn-soft" href="<?= url('alquileres/ver/' . (int)$t['id_alquiler_fk']) ?>" title="Ver alquiler"><i class="bi bi-eye"></i></a>
+                                <?php endif; ?>
+                            </div>
+                        </td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; endif; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-body py-2">
+        <?php render_pagination($pagination, 'pagos', $filters); ?>
+    </div>
+</div>
+
+<?php if (!$isStaff): ?>
+<div class="modal fade" id="methodModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="post" action="<?= url('pagos/metodos') ?>" class="modal-content border-0" style="border-radius:20px">
+            <?= csrf_field() ?>
+            <div class="modal-header border-0">
+                <h5 class="modal-title"><i class="bi bi-credit-card-2-front me-1"></i> Agregar método de pago</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label" for="tipo">Tipo</label>
+                    <select class="form-select" id="tipo" name="tipo" required>
+                        <?php foreach ($etiquetas as $key => $label): ?>
+                            <option value="<?= $key ?>"><?= $label ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="alias">Alias <span class="text-muted fw-normal">(opcional)</span></label>
+                    <input type="text" class="form-control" id="alias" name="alias" maxlength="50" placeholder="Ej: Mi tarjeta principal">
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="ultimos_digitos">Últimos 4 dígitos</label>
+                    <input type="text" class="form-control" id="ultimos_digitos" name="ultimos_digitos" inputmode="numeric" pattern="\d{4}" maxlength="4" placeholder="1234" required>
+                    <div class="form-text">Por seguridad solo guardamos los últimos 4 dígitos y un token interno. Nunca el número completo.</div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-brand"><i class="bi bi-plus-lg me-1"></i> Agregar método</button>
+            </div>
+        </form>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php if ($isStaff && $chartData): ?>
+<script>window.CHART_DATA = <?= json_encode($chartData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
+<?php endif; ?>
