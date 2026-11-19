@@ -79,3 +79,85 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    if (data.estaciones) {
+        makeChart('chartEstaciones', {
+            type: 'bar',
+            data: {
+                labels: data.estaciones.labels,
+                datasets: [{
+                    label: 'Bicicletas disponibles',
+                    data: data.estaciones.values,
+                    backgroundColor: brand,
+                    borderRadius: 8,
+                    maxBarThickness: 38
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+            }
+        });
+    }
+
+    if (data.energia) {
+        makeChart('chartEnergia', {
+            type: 'bar',
+            data: {
+                labels: data.energia.labels,
+                datasets: [{
+                    label: 'kWh consumidos',
+                    data: data.energia.values,
+                    backgroundColor: lime,
+                    borderRadius: 8,
+                    maxBarThickness: 34
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    }
+
+    if (data.alquileres) {
+        makeChart('chartAlquileres', {
+            type: 'bar',
+            data: {
+                labels: data.alquileres.labels,
+                datasets: [{
+                    label: data.alquileres.label || 'Alquileres',
+                    data: data.alquileres.values,
+                    backgroundColor: palette[2],
+                    borderRadius: 8,
+                    maxBarThickness: 30
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
+            }
+        });
+    }
+
+    if (data.tiposPago) {
+        makeChart('chartTiposPago', {
+            type: 'pie',
+            data: {
+                labels: data.tiposPago.labels,
+                datasets: [{
+                    data: data.tiposPago.values,
+                    backgroundColor: palette,
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, boxWidth: 8 } } }
+            }
+        });
+    }
+});
