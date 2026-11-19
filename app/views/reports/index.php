@@ -103,3 +103,109 @@ $query = '&desde=' . urlencode($desde) . '&hasta=' . urlencode($hasta);
             <div class="stat-value"><?= format_money($costoMant) ?></div>
             <div class="stat-hint">Taller y repuestos</div>
         </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="stat-card <?= $margen >= 0 ? 'lime' : 'danger' ?> h-100">
+            <div class="stat-icon"><i class="bi bi-graph-up-arrow"></i></div>
+            <div class="stat-label">Margen operativo</div>
+            <div class="stat-value"><?= format_money($margen) ?></div>
+            <div class="stat-hint">Ingresos − energía − mantenimiento</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-xl-8">
+        <div class="card h-100">
+            <div class="card-header"><h2>Ingresos de los últimos 12 meses</h2></div>
+            <div class="card-body"><div class="chart-box" style="height:260px"><canvas id="chartIngresos"></canvas></div></div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card h-100">
+            <div class="card-header"><h2>Estado de la flota</h2></div>
+            <div class="card-body"><div class="chart-box" style="height:260px"><canvas id="chartEstados"></canvas></div></div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-xl-7">
+        <div class="card h-100">
+            <div class="card-header"><h2>Alquileres por mes</h2></div>
+            <div class="card-body"><div class="chart-box" style="height:240px"><canvas id="chartAlquileres"></canvas></div></div>
+        </div>
+    </div>
+    <div class="col-xl-5">
+        <div class="card h-100">
+            <div class="card-header"><h2>Estaciones con más salidas</h2></div>
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead><tr><th>Estación</th><th>Alquileres</th><th>Ingresos</th></tr></thead>
+                    <tbody>
+                    <?php if (!$topStations): ?>
+                        <tr><td colspan="3" class="text-center text-muted py-4 small">Sin datos en el periodo.</td></tr>
+                    <?php else: foreach ($topStations as $s): ?>
+                        <tr>
+                            <td class="small"><?= e($s['nombre']) ?></td>
+                            <td><?= (int)$s['total'] ?></td>
+                            <td><?= format_money($s['ingresos']) ?></td>
+                        </tr>
+                    <?php endforeach; endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-xl-5">
+        <div class="card h-100">
+            <div class="card-header"><h2>Mejores clientes</h2></div>
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead><tr><th>Cliente</th><th>Viajes</th><th>Gasto</th></tr></thead>
+                    <tbody>
+                    <?php if (!$topClients): ?>
+                        <tr><td colspan="3" class="text-center text-muted py-4 small">Sin datos en el periodo.</td></tr>
+                    <?php else: foreach ($topClients as $c): ?>
+                        <tr>
+                            <td>
+                                <div class="small fw-semibold"><?= e($c['nombre']) ?></div>
+                                <small class="text-muted"><?= e($c['email']) ?></small>
+                            </td>
+                            <td><?= (int)$c['viajes'] ?></td>
+                            <td><?= format_money($c['gasto']) ?></td>
+                        </tr>
+                    <?php endforeach; endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-7">
+        <div class="card h-100">
+            <div class="card-header"><h2>Resumen mensual</h2></div>
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead><tr><th>Mes</th><th>Alquileres</th><th>Tiempo total</th><th>Facturado</th></tr></thead>
+                    <tbody>
+                    <?php if (!$resumenMensual): ?>
+                        <tr><td colspan="4" class="text-center text-muted py-4 small">Sin alquileres en el periodo.</td></tr>
+                    <?php else: foreach ($resumenMensual as $m): ?>
+                        <tr>
+                            <td><?= e(date('m/Y', strtotime($m['ym'] . '-01'))) ?></td>
+                            <td><?= (int)$m['total'] ?></td>
+                            <td><?= format_minutes((int)$m['minutos']) ?></td>
+                            <td><strong><?= format_money($m['facturado']) ?></strong></td>
+                        </tr>
+                    <?php endforeach; endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>window.CHART_DATA = <?= json_encode($chartData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;</script>
